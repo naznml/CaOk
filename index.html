@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Педагогикалық практика және өлшемдік бағалау</title>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      background:linear-gradient(135deg,#fff7ed 0%,#f8fafc 45%,#eef2ff 100%);
+      color:#172033;
+      line-height:1.65;
+      padding-bottom:40px;
+    }
+    .page{max-width:1160px;margin:0 auto;padding:14px}
+    .hero{
+      border-radius:30px;
+      padding:30px 18px;
+      color:white;
+      background:linear-gradient(135deg,#f97316,#7c3aed,#2563eb);
+      box-shadow:0 18px 45px rgba(124,58,237,.22);
+      margin-bottom:14px;
+    }
+    .hero-badge{
+      display:inline-flex;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
+      border:1px solid rgba(255,255,255,.28);
+      font-size:13px;
+      font-weight:850;
+      margin-bottom:12px;
+    }
+    .hero h1{
+      font-size:clamp(25px,5vw,44px);
+      line-height:1.08;
+      margin-bottom:12px;
+      letter-spacing:-.04em;
+    }
+    .hero p{
+      max-width:930px;
+      font-size:clamp(15px,2.5vw,18px);
+      opacity:.96;
+      margin-bottom:16px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:14px;
+    }
+    .hero-card{
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.24);
+      border-radius:18px;
+      padding:12px;
+      min-height:84px;
+    }
+    .hero-card b{display:block;font-size:15px;margin-bottom:4px}
+    .hero-card span{font-size:13px;opacity:.92}
+    .rights{
+      margin:12px 0 16px;
+      border-radius:18px;
+      padding:13px 14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#7c2d12;
+      font-size:14px;
+      font-weight:750;
+    }
+    .top-nav-wrap{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,247,237,.88);
+      backdrop-filter:blur(14px);
+      padding:8px 0;
+      margin-bottom:16px;
+    }
+    .top-nav{
+      display:flex;
+      gap:8px;
+      overflow-x:auto;
+      padding:4px 2px 8px;
+    }
+    .top-nav a{
+      flex:0 0 auto;
+      text-decoration:none;
+      color:#7c2d12;
+      background:rgba(255,255,255,.96);
+      border:1px solid #fed7aa;
+      border-radius:999px;
+      padding:9px 12px;
+      font-size:13px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    .top-nav a:hover{background:#ffedd5}
+    .intro{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:14px;
+      margin-bottom:18px;
+    }
+    .intro-card,.study-block{
+      background:rgba(255,255,255,.96);
+      border:1px solid rgba(249,115,22,.18);
+      box-shadow:0 16px 38px rgba(249,115,22,.08);
+    }
+    .intro-card{
+      border-radius:22px;
+      padding:18px;
+    }
+    .intro-card h2{
+      font-size:21px;
+      margin-bottom:10px;
+      color:#9a3412;
+    }
+    .intro-card p{
+      margin-bottom:10px;
+      color:#334155;
+      font-size:15px;
+    }
+    .tag-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{
+      border-radius:999px;
+      padding:7px 10px;
+      background:#ffedd5;
+      color:#9a3412;
+      border:1px solid #fed7aa;
+      font-size:12.5px;
+      font-weight:820;
+    }
+    .study-block{
+      scroll-margin-top:92px;
+      border-radius:24px;
+      margin:18px 0;
+      overflow:hidden;
+    }
+    .study-block-header{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:18px;
+      background:linear-gradient(135deg,#ffedd5,#ede9fe,#dbeafe);
+      border-bottom:1px solid rgba(249,115,22,.12);
+    }
+    .block-number{
+      flex:0 0 auto;
+      width:46px;
+      height:46px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      color:white;
+      background:linear-gradient(135deg,#f97316,#7c3aed,#2563eb);
+      font-size:21px;
+      font-weight:950;
+    }
+    .study-block-header h2{
+      font-size:clamp(20px,3.2vw,28px);
+      color:#9a3412;
+      line-height:1.18;
+      margin-bottom:6px;
+    }
+    .study-block-header p{color:#475569;font-size:14.5px}
+    .mini-tabs{
+      display:flex;
+      gap:7px;
+      overflow-x:auto;
+      padding:12px 14px;
+      background:#f8fafc;
+      border-bottom:1px solid #e2e8f0;
+    }
+    .mini-tabs button{
+      flex:0 0 auto;
+      border:none;
+      border-radius:999px;
+      padding:9px 13px;
+      background:#e2e8f0;
+      color:#334155;
+      font-weight:880;
+      font-size:13px;
+      cursor:pointer;
+    }
+    .mini-tabs button.active{
+      background:linear-gradient(135deg,#f97316,#7c3aed,#2563eb);
+      color:white;
+    }
+    .tab-content{display:none;padding:16px}
+    .tab-content.active{display:block}
+    details{
+      background:#fff;
+      border:1px solid #e2e8f0;
+      border-radius:16px;
+      padding:13px 14px;
+      margin-bottom:10px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight:900;
+      color:#9a3412;
+      font-size:15.5px;
+    }
+    details p{margin-top:9px;color:#334155;font-size:15px}
+    .source-small{
+      margin-top:8px;
+      color:#64748b;
+      font-size:12px;
+      font-style:italic;
+    }
+    .formula-list,.term-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+    .formula{
+      background:#f8fafc;
+      border:1px solid #cbd5e1;
+      border-left:5px solid #f97316;
+      border-radius:16px;
+      padding:12px;
+      font-weight:850;
+      color:#0f172a;
+      overflow-x:auto;
+    }
+    .term{
+      background:#f9fafb;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:12px;
+    }
+    .term b{color:#9a3412;display:block;margin-bottom:5px}
+    .term p{color:#475569;font-size:14.5px}
+    .question{
+      background:#fff;
+      border:1px solid #e2e8f0;
+      border-radius:18px;
+      padding:14px;
+      margin-bottom:13px;
+    }
+    .question p{font-weight:900;color:#0f172a;margin-bottom:10px}
+    .question-note{
+      display:inline-block;
+      margin-bottom:8px;
+      border-radius:999px;
+      padding:5px 9px;
+      background:#ffedd5;
+      color:#9a3412;
+      font-size:12px;
+      font-weight:850;
+    }
+    .option{
+      display:block;
+      border:1px solid #dbe3ec;
+      border-radius:14px;
+      padding:10px 11px;
+      margin:8px 0;
+      cursor:pointer;
+      background:#f8fafc;
+      color:#334155;
+      font-size:14.5px;
+    }
+    .option input{margin-right:8px;transform:translateY(1px)}
+    .option.correct{border-color:#16a34a;background:#dcfce7;color:#14532d;font-weight:800}
+    .option.wrong{border-color:#dc2626;background:#fee2e2;color:#7f1d1d;font-weight:800}
+    .explain{
+      display:none;
+      margin-top:10px;
+      border-radius:14px;
+      padding:11px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#7c2d12;
+      font-size:14px;
+    }
+    .explain.show{display:block}
+    .check-btn{
+      display:block;
+      width:100%;
+      border:none;
+      border-radius:18px;
+      padding:14px 16px;
+      margin-top:14px;
+      background:linear-gradient(135deg,#f97316,#7c3aed,#2563eb);
+      color:white;
+      font-size:16px;
+      font-weight:950;
+      cursor:pointer;
+      box-shadow:0 14px 30px rgba(249,115,22,.22);
+    }
+    .result{
+      display:none;
+      margin-bottom:14px;
+      border-radius:18px;
+      padding:14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#7c2d12;
+    }
+    .result.show{display:block}
+    .score{font-size:26px;font-weight:950;margin-bottom:4px}
+    .copyright-note{
+      margin-top:22px;
+      border-radius:18px;
+      padding:14px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#7c2d12;
+      font-size:14px;
+      font-weight:750;
+      text-align:center;
+    }
+    footer{text-align:center;margin:18px 0 8px;color:#64748b;font-size:13px}
+    @media(max-width:760px){
+      .page{padding:10px}
+      .hero{border-radius:22px;padding:22px 15px}
+      .hero-grid,.intro,.formula-list,.term-list{grid-template-columns:1fr}
+      .study-block-header{gap:10px;padding:15px}
+      .block-number{width:40px;height:40px;border-radius:14px;font-size:19px}
+      .tab-content{padding:13px}
+      .top-nav a{font-size:12.5px;padding:8px 10px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="hero">
+      <div class="hero-badge">Өнербаева З.О. · Педагогикалық практика · Өлшемдік бағалау</div>
+      <h1>Педагогикалық практика және бағалаудың өлшемдік технологиялары</h1>
+      <p>
+        Бұл сайт химия мұғалімін кәсіби даярлау, педагогикалық практика,
+        сабақ бақылау, практика құжаттары, критериалды бағалау, дескриптор,
+        рубрика, кері байланыс және рефлексия тақырыптарын қайталауға арналған.
+      </p>
+
+      <div class="hero-grid">
+        <div class="hero-card">
+          <b>Практика</b>
+          <span>Мұғалімнің кәсіби әрекеті</span>
+        </div>
+        <div class="hero-card">
+          <b>Сабақ</b>
+          <span>Жоспарлау, бақылау, талдау</span>
+        </div>
+        <div class="hero-card">
+          <b>Бағалау</b>
+          <span>Критерий, дескриптор, рубрика</span>
+        </div>
+        <div class="hero-card">
+          <b>Рефлексия</b>
+          <span>Өзіндік талдау және даму</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="rights">
+      © Назерке. Барлық құқық қорғалған. Материалды рұқсатсыз көшіруге,
+      сатуға, қайта таратуға немесе коммерциялық мақсатта қолдануға болмайды.
+    </div>
+
+    <div class="top-nav-wrap">
+      <nav class="top-nav">
+        <a href="#block1">1. Педагогикалық практика</a>
+        <a href="#block2">2. Сабақ бақылау</a>
+        <a href="#block3">3. Практика құжаттары</a>
+        <a href="#block4">4. Өлшемдік бағалау</a>
+        <a href="#block5">5. Дескриптор және рубрика</a>
+        <a href="#block6">6. Жинақ тест</a>
+      </nav>
+    </div>
+
+    <section class="intro">
+      <div class="intro-card">
+        <h2>Дереккөздер</h2>
+        <p>
+          Өнербаева З.О. “Педагогикалық практика әдістемесі” / химия пәні негізінде.
+          Оқу құралы. Алматы, 2010.
+        </p>
+        <p>
+          Өнербаева З.О. “Бағалаудың өлшемдік технологиялары”.
+          Оқу құралы. Алматы, 2015.
+        </p>
+      </div>
+
+      <div class="intro-card">
+        <h2>Сайт бағыты</h2>
+        <p>
+          Бұл сайт педагогикалық практика мен бағалауды бірге қарастырады:
+          мұғалім әрекеті, сабаққа дайындық, бақылау, талдау, практика құжаттары,
+          критерий, дескриптор, рубрика және кері байланыс.
+        </p>
+        <div class="tag-list">
+          <span class="tag">Педагогикалық практика</span>
+          <span class="tag">Сабақ талдау</span>
+          <span class="tag">ҚМЖ</span>
+          <span class="tag">Критериалды бағалау</span>
+          <span class="tag">Дескриптор</span>
+          <span class="tag">Рубрика</span>
+          <span class="tag">Портфолио</span>
+          <span class="tag">Рефлексия</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="block1" class="study-block">
+      <div class="study-block-header">
+        <div class="block-number">1</div>
+        <div>
+          <h2>Педагогикалық практика және химия мұғалімінің кәсіби әрекеті</h2>
+          <p>
+            Педагогикалық практиканың мақсаты, міндеттері, болашақ мұғалімнің
+            кәсіби қалыптасуы, сабаққа дайындық, оқушы әрекетін ұйымдастыру және
+            химия пәнінің ерекшелігі.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-tabs">
+        <button class="active" onclick="openTab(event, 'block1', 'theory')">Теория</button>
+        <button onclick="openTab(event, 'block1', 'formula')">Тірек</button>
+        <button onclick="openTab(event, 'block1', 'terms')">Термин</button>
+        <button onclick="openTab(event, 'block1', 'test')">Тест</button>
+      </div>
+
+      <div class="tab-content active" data-tab="theory">
+        <details open>
+          <summary>Педагогикалық практиканың мәні</summary>
+          <p>
+            Педагогикалық практика болашақ мұғалімнің теориялық білімін мектептегі
+            нақты оқу-тәрбие үдерісімен байланыстырады. Практика кезінде студент
+            мұғалімнің кәсіби әрекетін бақылайды, сабақ жоспарлайды, сабақ өткізеді,
+            оқушы әрекетін ұйымдастырады және өз жұмысын талдайды.
+          </p>
+          <div class="source-small">
+            Дереккөз: Өнербаева З.О. “Педагогикалық практика әдістемесі”, 2010.
+          </div>
+        </details>
+
+        <details>
+          <summary>Практиканың мақсаты</summary>
+          <p>
+            Педагогикалық практиканың мақсаты — болашақ химия мұғалімінің кәсіби
+            құзыреттілігін қалыптастыру. Бұл мақсат сабаққа дайындалу, оқу мақсатын
+            қою, әдіс таңдау, тәжірибе ұйымдастыру, бағалау және оқушылармен
+            педагогикалық қарым-қатынас жасау арқылы жүзеге асады.
+          </p>
+        </details>
+
+        <details>
+          <summary>Практиканың міндеттері</summary>
+          <p>
+            Практиканың міндеттері: мектеп құжаттарымен танысу, химия кабинетінің
+            материалдық базасын зерттеу, сабаққа қатысу және талдау, қысқа мерзімді
+            жоспар құру, сабақ өткізу, сыныптан тыс жұмыс ұйымдастыру, оқушы білімін
+            бағалау және өзіндік рефлексия жасау.
+          </p>
+        </details>
+
+        <details>
+          <summary>Химия пәнінің практикалық ерекшелігі</summary>
+          <p>
+            Химия мұғалімі сабақта химиялық тіл, тәжірибе, есеп шығару, қауіпсіздік,
+            көрнекілік және зертханалық құралдарды қатар қолданады. Сондықтан
+            педагогикалық практикада химиялық экспериментті дұрыс әрі қауіпсіз
+            ұйымдастыруға ерекше мән беріледі.
+          </p>
+        </details>
+
+        <details>
+          <summary>Мұғалімнің кәсіби әрекеті</summary>
+          <p>
+            Химия мұғалімі оқу мақсатын анықтайды, сабақ мазмұнын іріктейді,
+            тапсырма құрастырады, тәжірибе дайындайды, оқушы әрекетін басқарады,
+            білімді бағалайды және сабақ нәтижесін талдайды.
+          </p>
+        </details>
+
+        <details>
+          <summary>КТ үшін маңызды тұжырым</summary>
+          <p>
+            Педагогикалық практика теориялық білімді нақты мектеп тәжірибесімен
+            байланыстырады. Болашақ мұғалім сабақ жоспарлау, өткізу, бақылау,
+            талдау, бағалау және рефлексия жасау әрекеттерін меңгереді.
+          </p>
+        </details>
+      </div>
+
+      <div class="tab-content" data-tab="formula">
+        <div class="formula-list">
+          <div class="formula">Педагогикалық практика → теория + мектеп тәжірибесі</div>
+          <div class="formula">Мақсат → кәсіби құзыреттілік қалыптастыру</div>
+          <div class="formula">Практика міндеті → бақылау + жоспарлау + сабақ өткізу + талдау</div>
+          <div class="formula">Химия мұғалімі → мақсат + әдіс + тәжірибе + бағалау</div>
+          <div class="formula">Сабаққа дайындық → мазмұн + тапсырма + ресурс + қауіпсіздік</div>
+          <div class="formula">Кәсіби әрекет → ұйымдастыру + түсіндіру + бақылау + қолдау</div>
+          <div class="formula">Химия ерекшелігі → эксперимент + химиялық тіл + есеп</div>
+          <div class="formula">Рефлексия → өз сабағын талдау және жақсарту</div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="terms">
+        <div class="term-list">
+          <div class="term"><b>Педагогикалық практика</b><p>Болашақ мұғалімнің мектептегі кәсіби әрекетті тәжірибе арқылы меңгеру кезеңі.</p></div>
+          <div class="term"><b>Кәсіби құзыреттілік</b><p>Мұғалімнің білім, білік, дағды және кәсіби әрекетті тиімді қолдану қабілеті.</p></div>
+          <div class="term"><b>Сабаққа дайындық</b><p>Мақсат, мазмұн, әдіс, тапсырма, ресурс және бағалауды алдын ала жоспарлау.</p></div>
+          <div class="term"><b>Педагогикалық қарым-қатынас</b><p>Мұғалім мен оқушы арасындағы оқу-тәрбие мақсатына бағытталған өзара әрекет.</p></div>
+          <div class="term"><b>Сабақ талдау</b><p>Сабақтың мақсаты, мазмұны, әдісі, нәтижесі және оқушы әрекетін бағалау үдерісі.</p></div>
+          <div class="term"><b>Рефлексия</b><p>Мұғалімнің немесе оқушының өз әрекетін талдап, келесі қадамын анықтауы.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="test">
+        <div id="block1Result" class="result"></div>
+
+        <div class="question" data-answer="2">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>1. Педагогикалық практиканың негізгі мәні:</p>
+          <label class="option"><input type="radio" name="p1q1" value="0"> Оқу бағдарламасындағы тақырыптарды құжаттық ретпен орналастыру</label>
+          <label class="option"><input type="radio" name="p1q1" value="1"> Химиялық реактивтерді кабинет қорында сақтау тәртібін белгілеу</label>
+          <label class="option"><input type="radio" name="p1q1" value="2"> Теориялық білімді мектептегі нақты кәсіби әрекетпен байланыстыру</label>
+          <label class="option"><input type="radio" name="p1q1" value="3"> Оқулық мәтінін сабақ кезеңдері бойынша қысқарту</label>
+          <label class="option"><input type="radio" name="p1q1" value="4"> Бағалау нәтижесін тоқсандық журналға енгізу</label>
+          <div class="explain">Дұрыс жауап: C. Педагогикалық практика болашақ мұғалімнің теориялық білімін мектептегі кәсіби әрекетпен байланыстырады.</div>
+        </div>
+
+        <div class="question" data-answer="0,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>2. Педагогикалық практика міндеттеріне сәйкес әрекеттерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p1q2" value="0"> Сабаққа қатысу және талдау</label>
+          <label class="option"><input type="checkbox" name="p1q2" value="1"> Оқулық мұқабасын рәсімдеу</label>
+          <label class="option"><input type="checkbox" name="p1q2" value="2"> Кабинет жиһазының түсін таңдау</label>
+          <label class="option"><input type="checkbox" name="p1q2" value="3"> Қысқа мерзімді жоспар құру</label>
+          <label class="option"><input type="checkbox" name="p1q2" value="4"> Сабақ кестесін әкімшілік бекіту</label>
+          <label class="option"><input type="checkbox" name="p1q2" value="5"> Өткізілген сабаққа рефлексия жасау</label>
+          <div class="explain">Дұрыс жауаптар: A, D, F. Практикада студент сабақ бақылайды, жоспар құрады және өз сабағын талдайды.</div>
+        </div>
+
+        <div class="question" data-answer="1">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>3. Химия мұғалімінің педагогикалық практикадағы ерекше дайындығы қай жауапта көрсетілген?</p>
+          <label class="option"><input type="radio" name="p1q3" value="0"> Сабақ тақырыбын сынып журналына дұрыс көшіру</label>
+          <label class="option"><input type="radio" name="p1q3" value="1"> Эксперимент, химиялық тіл, есеп және қауіпсіздікті сабақпен байланыстыру</label>
+          <label class="option"><input type="radio" name="p1q3" value="2"> Оқулықтағы параграфтарды бөлім бойынша нөмірлеу</label>
+          <label class="option"><input type="radio" name="p1q3" value="3"> Бағалау парағын сабақ соңында жинау</label>
+          <label class="option"><input type="radio" name="p1q3" value="4"> Кабинет құжаттарының сыртқы безендірілуін тексеру</label>
+          <div class="explain">Дұрыс жауап: B. Химия сабағында тәжірибе, қауіпсіздік, химиялық тіл және есептер ерекше орын алады.</div>
+        </div>
+
+        <div class="question" data-answer="1,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>4. Мұғалімнің кәсіби әрекетіне кіретіндерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p1q4" value="0"> Сынып журналының сыртқы түсін таңдау</label>
+          <label class="option"><input type="checkbox" name="p1q4" value="1"> Оқу мақсатын анықтау</label>
+          <label class="option"><input type="checkbox" name="p1q4" value="2"> Оқушы әрекетін ұйымдастыру</label>
+          <label class="option"><input type="checkbox" name="p1q4" value="3"> Кабинет кілттерін тіркеу</label>
+          <label class="option"><input type="checkbox" name="p1q4" value="4"> Сабақ нәтижесін талдау</label>
+          <label class="option"><input type="checkbox" name="p1q4" value="5"> Оқулық бетін безендіру</label>
+          <div class="explain">Дұрыс жауаптар: B, C, E. Мұғалім мақсат қояды, оқушы әрекетін ұйымдастырады және сабақ нәтижесін талдайды.</div>
+        </div>
+
+        <button class="check-btn" onclick="checkBlock('block1')">Тестті тексеру</button>
+      </div>
+    </section>
+        <section id="block2" class="study-block">
+      <div class="study-block-header">
+        <div class="block-number">2</div>
+        <div>
+          <h2>Сабақ бақылау және сабақ талдау әдістемесі</h2>
+          <p>
+            Практика кезінде сабаққа қатысу, мұғалім әрекетін бақылау, оқушы
+            белсенділігін анықтау, сабақ мақсаты мен нәтижесін салыстыру және
+            химия сабағын әдістемелік талдау.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-tabs">
+        <button class="active" onclick="openTab(event, 'block2', 'theory')">Теория</button>
+        <button onclick="openTab(event, 'block2', 'formula')">Тірек</button>
+        <button onclick="openTab(event, 'block2', 'terms')">Термин</button>
+        <button onclick="openTab(event, 'block2', 'test')">Тест</button>
+      </div>
+
+      <div class="tab-content active" data-tab="theory">
+        <details open>
+          <summary>Сабақ бақылаудың мақсаты</summary>
+          <p>
+            Сабақ бақылау педагогикалық практикадағы маңызды әрекет. Оның мақсаты —
+            сабақтың құрылымын, мұғалімнің әдіс-тәсілдерін, оқушының оқу әрекетін,
+            қолданылған құралдарды, бағалау түрлерін және сабақ нәтижесін түсіну.
+            Бақылау болашақ мұғалімнің кәсіби тәжірибе жинауына көмектеседі.
+          </p>
+          <div class="source-small">
+            Дереккөз: Өнербаева З.О. “Педагогикалық практика әдістемесі”, 2010.
+          </div>
+        </details>
+
+        <details>
+          <summary>Сабақты бақылау бағыттары</summary>
+          <p>
+            Сабақты бақылауда оқу мақсаты, сабақ мазмұны, әдістер, көрнекілік,
+            химиялық эксперимент, оқушылардың белсенділігі, мұғалімнің сұрақ қоюы,
+            кері байланыс, бағалау және уақытты тиімді пайдалану қарастырылады.
+          </p>
+        </details>
+
+        <details>
+          <summary>Химия сабағын бақылау ерекшелігі</summary>
+          <p>
+            Химия сабағында бақылау кезінде тәжірибенің мақсатқа сәйкестігі,
+            қауіпсіздік ережесінің сақталуы, реактивтер мен құралдардың қолданылуы,
+            химиялық тілдің дұрыс пайдаланылуы және есеп шығару жұмысының ұйымдастырылуы
+            ескеріледі.
+          </p>
+        </details>
+
+        <details>
+          <summary>Сабақ талдау</summary>
+          <p>
+            Сабақ талдау сабақ аяқталғаннан кейін жүргізіледі. Талдауда сабақ мақсатына
+            жету деңгейі, тапсырмалардың тиімділігі, оқушылардың қатысуы, бағалау
+            сапасы, мұғалімнің ұйымдастыру шеберлігі және сабақтағы қиындықтар
+            қарастырылады.
+          </p>
+        </details>
+
+        <details>
+          <summary>Өзіндік талдау</summary>
+          <p>
+            Практикант өз сабағын өзі талдауы қажет. Өзіндік талдау кезінде ол
+            сабақтың сәтті жақтарын, қиындықтарын, оқушы әрекетін, қолданылған
+            әдістерді және келесі сабақта нені жақсарту керегін анықтайды.
+          </p>
+        </details>
+
+        <details>
+          <summary>КТ үшін маңызды тұжырым</summary>
+          <p>
+            Сабақ бақылау — тек қатысу емес, мақсат, мазмұн, әдіс, құрал, оқушы
+            әрекеті, бағалау және нәтиженің байланысын анықтау. Химия сабағында
+            эксперимент пен қауіпсіздік ерекше бақылау нысаны болады.
+          </p>
+        </details>
+      </div>
+
+      <div class="tab-content" data-tab="formula">
+        <div class="formula-list">
+          <div class="formula">Сабақ бақылау → мақсат + әдіс + оқушы әрекеті + нәтиже</div>
+          <div class="formula">Талдау → мақсатқа жету + тапсырма тиімділігі + бағалау</div>
+          <div class="formula">Химия сабағы → тәжірибе + қауіпсіздік + химиялық тіл</div>
+          <div class="formula">Мұғалім әрекеті → ұйымдастыру + түсіндіру + сұрақ + қолдау</div>
+          <div class="formula">Оқушы әрекеті → тыңдау + орындау + талдау + дәлелдеу</div>
+          <div class="formula">Кері байланыс → қате + түзету + келесі қадам</div>
+          <div class="formula">Өзіндік талдау → сәттілік + қиындық + жақсарту</div>
+          <div class="formula">Сабақ нәтижесі → оқу мақсатына жету деңгейі</div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="terms">
+        <div class="term-list">
+          <div class="term"><b>Сабақ бақылау</b><p>Сабақ барысын мақсатты түрде қадағалап, мұғалім мен оқушы әрекетін зерттеу.</p></div>
+          <div class="term"><b>Сабақ талдау</b><p>Сабақтың мақсаты, мазмұны, әдісі, бағалауы және нәтижесін әдістемелік тұрғыдан бағалау.</p></div>
+          <div class="term"><b>Өзіндік талдау</b><p>Мұғалімнің өз сабағын бағалап, жетістік пен кемшілікті анықтауы.</p></div>
+          <div class="term"><b>Бақылау парағы</b><p>Сабақтағы негізгі көрсеткіштерді белгілеуге арналған құрал.</p></div>
+          <div class="term"><b>Оқушы белсенділігі</b><p>Оқушының сабақта сұрақ қою, жауап беру, талдау, орындау және дәлелдеу әрекеті.</p></div>
+          <div class="term"><b>Әдістемелік талдау</b><p>Сабақты оқыту мақсаты мен әдістемелік талаптар тұрғысынан қарастыру.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="test">
+        <div id="block2Result" class="result"></div>
+
+        <div class="question" data-answer="2">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>1. Сабақ бақылаудың негізгі мақсаты қай жауапта дұрыс берілген?</p>
+          <label class="option"><input type="radio" name="p2q1" value="0"> Сабақ тақырыбын журналдағы жазумен салыстыру</label>
+          <label class="option"><input type="radio" name="p2q1" value="1"> Мұғалімнің сөйлеу жылдамдығын сырттай бағалау</label>
+          <label class="option"><input type="radio" name="p2q1" value="2"> Мұғалім мен оқушы әрекетін, әдіс пен нәтижені әдістемелік тұрғыдан зерттеу</label>
+          <label class="option"><input type="radio" name="p2q1" value="3"> Оқулықтағы параграфтардың нөмірін тексеру</label>
+          <label class="option"><input type="radio" name="p2q1" value="4"> Сыныптағы оқушылардың орын ауыстыруын тіркеу</label>
+          <div class="explain">Дұрыс жауап: C. Сабақ бақылау мұғалім мен оқушы әрекетін, қолданылған әдістерді және нәтижені түсінуге бағытталады.</div>
+        </div>
+
+        <div class="question" data-answer="0,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>2. Химия сабағын бақылауда ерекше ескерілетін көрсеткіштерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p2q2" value="0"> Эксперименттің мақсатқа сәйкестігі</label>
+          <label class="option"><input type="checkbox" name="p2q2" value="1"> Оқулық мұқабасының түсі</label>
+          <label class="option"><input type="checkbox" name="p2q2" value="2"> Сынып тақтасының өлшемі</label>
+          <label class="option"><input type="checkbox" name="p2q2" value="3"> Қауіпсіздік ережесінің сақталуы</label>
+          <label class="option"><input type="checkbox" name="p2q2" value="4"> Сабақ кестесінің баспа түрі</label>
+          <label class="option"><input type="checkbox" name="p2q2" value="5"> Химиялық тілдің дұрыс қолданылуы</label>
+          <div class="explain">Дұрыс жауаптар: A, D, F. Химия сабағында эксперимент, қауіпсіздік және химиялық тіл негізгі бақылау нысандарының бірі.</div>
+        </div>
+
+        <div class="question" data-answer="1">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>3. Сабақ талдауда ең маңызды сұрақтардың бірі:</p>
+          <label class="option"><input type="radio" name="p2q3" value="0"> Сабақ қай кабинетте өтті?</label>
+          <label class="option"><input type="radio" name="p2q3" value="1"> Сабақ мақсатына жету деңгейі қандай болды?</label>
+          <label class="option"><input type="radio" name="p2q3" value="2"> Оқушылар қандай парталарда отырды?</label>
+          <label class="option"><input type="radio" name="p2q3" value="3"> Журналдың сыртқы түрі қандай?</label>
+          <label class="option"><input type="radio" name="p2q3" value="4"> Мұғалім қай түсті қалам қолданды?</label>
+          <div class="explain">Дұрыс жауап: B. Сабақ талдауда басты назар сабақ мақсатының орындалуына және оқушы нәтижесіне аударылады.</div>
+        </div>
+
+        <div class="question" data-answer="1,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>4. Өзіндік талдауға сәйкес әрекеттерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p2q4" value="0"> Сабақ кестесін көшіру</label>
+          <label class="option"><input type="checkbox" name="p2q4" value="1"> Сабақтың сәтті жақтарын анықтау</label>
+          <label class="option"><input type="checkbox" name="p2q4" value="2"> Қиындықтарды талдау</label>
+          <label class="option"><input type="checkbox" name="p2q4" value="3"> Кабинет құжатын қайта жазу</label>
+          <label class="option"><input type="checkbox" name="p2q4" value="4"> Келесі сабақта жақсартатын әрекетті белгілеу</label>
+          <label class="option"><input type="checkbox" name="p2q4" value="5"> Оқулық бетін нөмірлеу</label>
+          <div class="explain">Дұрыс жауаптар: B, C, E. Өзіндік талдау мұғалімге сәттілікті, қиындықты және келесі қадамды анықтауға көмектеседі.</div>
+        </div>
+
+        <button class="check-btn" onclick="checkBlock('block2')">Тестті тексеру</button>
+      </div>
+    </section>
+
+    <section id="block3" class="study-block">
+      <div class="study-block-header">
+        <div class="block-number">3</div>
+        <div>
+          <h2>Педагогикалық практика құжаттары және портфолио</h2>
+          <p>
+            Практика күнделігі, сабақ жоспары, сабақ талдау парағы, бақылау парағы,
+            сыныптан тыс жұмыс жоспары, есеп беру және практикант портфолиосы.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-tabs">
+        <button class="active" onclick="openTab(event, 'block3', 'theory')">Теория</button>
+        <button onclick="openTab(event, 'block3', 'formula')">Тірек</button>
+        <button onclick="openTab(event, 'block3', 'terms')">Термин</button>
+        <button onclick="openTab(event, 'block3', 'test')">Тест</button>
+      </div>
+
+      <div class="tab-content active" data-tab="theory">
+        <details open>
+          <summary>Практика құжаттарының маңызы</summary>
+          <p>
+            Педагогикалық практика құжаттары практиканттың кәсіби әрекетін жоспарлау,
+            орындау, бақылау және талдау үшін қажет. Құжаттар студенттің сабаққа
+            дайындық деңгейін, өткізген сабақтарын, бақылауларын, талдауларын және
+            кәсіби өсуін көрсетеді.
+          </p>
+          <div class="source-small">
+            Дереккөз: Өнербаева З.О. “Педагогикалық практика әдістемесі”, 2010.
+          </div>
+        </details>
+
+        <details>
+          <summary>Практика күнделігі</summary>
+          <p>
+            Практика күнделігі студенттің күнделікті жұмысын тіркейді. Онда сабаққа
+            қатысу, сабақ өткізу, сыныптан тыс жұмыс, бақылау нәтижелері, әдіскер
+            ескертпелері және студенттің өзіндік қорытындылары жазылады.
+          </p>
+        </details>
+
+        <details>
+          <summary>Сабақ жоспары</summary>
+          <p>
+            Сабақ жоспары оқу мақсаты, сабақ мақсаты, сабақ кезеңдері, тапсырмалар,
+            әдістер, ресурстар, бағалау және рефлексиядан тұрады. Химия сабағында
+            тәжірибе, реактивтер, құралдар және қауіпсіздік бөлек ескеріледі.
+          </p>
+        </details>
+
+        <details>
+          <summary>Сабақ талдау және бақылау парағы</summary>
+          <p>
+            Сабақ талдау парағы сабақтың мақсаты, мазмұны, әдісі, оқушы әрекеті,
+            бағалау және нәтиже бойынша қорытынды жасауға көмектеседі. Бақылау
+            парағы сабақтағы нақты көрсеткіштерді жүйелі белгілеуге арналған.
+          </p>
+        </details>
+
+        <details>
+          <summary>Портфолио</summary>
+          <p>
+            Практикант портфолиосы оның кәсіби жетістіктерін көрсететін жинақ.
+            Оған сабақ жоспарлары, талдау парақтары, күнделік үзінділері, бағалау
+            материалдары, сыныптан тыс жұмыс үлгілері және рефлексия кіруі мүмкін.
+          </p>
+        </details>
+
+        <details>
+          <summary>Есеп беру</summary>
+          <p>
+            Практика соңында студент атқарылған жұмыс бойынша есеп береді.
+            Есепте сабақ саны, бақылау нәтижелері, өткізілген іс-шаралар, қиындықтар,
+            жетістіктер және кәсіби даму қорытындысы көрсетіледі.
+          </p>
+        </details>
+      </div>
+
+      <div class="tab-content" data-tab="formula">
+        <div class="formula-list">
+          <div class="formula">Практика құжаты → жоспарлау + орындау + талдау</div>
+          <div class="formula">Күнделік → күнделікті әрекет пен қорытынды</div>
+          <div class="formula">Сабақ жоспары → мақсат + кезең + тапсырма + бағалау</div>
+          <div class="formula">Бақылау парағы → нақты көрсеткіштерді тіркеу</div>
+          <div class="formula">Сабақ талдауы → мақсат + әдіс + оқушы әрекеті + нәтиже</div>
+          <div class="formula">Портфолио → кәсіби жетістік дәлелі</div>
+          <div class="formula">Есеп беру → атқарылған жұмыс + нәтиже + рефлексия</div>
+          <div class="formula">Химия жоспары → тәжірибе + қауіпсіздік + реактив</div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="terms">
+        <div class="term-list">
+          <div class="term"><b>Практика күнделігі</b><p>Практика кезіндегі күнделікті жұмыс, бақылау және қорытынды жазылатын құжат.</p></div>
+          <div class="term"><b>Портфолио</b><p>Практиканттың кәсіби жетістігі мен жұмыс нәтижелерін жинақтайтын материалдар жиынтығы.</p></div>
+          <div class="term"><b>Сабақ жоспары</b><p>Сабақ мақсаты, кезеңдері, тапсырмасы, әдісі, бағалауы және ресурстары көрсетілген құжат.</p></div>
+          <div class="term"><b>Бақылау парағы</b><p>Сабақтағы маңызды көрсеткіштерді жүйелі белгілеуге арналған форма.</p></div>
+          <div class="term"><b>Есеп беру</b><p>Практика соңында атқарылған жұмыс пен нәтижені сипаттайтын қорытынды құжат.</p></div>
+          <div class="term"><b>Сыныптан тыс жұмыс жоспары</b><p>Сабақтан тыс химиялық іс-шараны ұйымдастыруға арналған жоспар.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="test">
+        <div id="block3Result" class="result"></div>
+
+        <div class="question" data-answer="2">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>1. Практика күнделігінің негізгі қызметі:</p>
+          <label class="option"><input type="radio" name="p3q1" value="0"> Оқулықтағы параграфтарды тақырып бойынша бөлу</label>
+          <label class="option"><input type="radio" name="p3q1" value="1"> Химиялық реактивтерді қоймада сақтау</label>
+          <label class="option"><input type="radio" name="p3q1" value="2"> Практиканттың күнделікті жұмысын, бақылауын және қорытындысын тіркеу</label>
+          <label class="option"><input type="radio" name="p3q1" value="3"> Бағалау журналын әкімшілік тексеруге дайындау</label>
+          <label class="option"><input type="radio" name="p3q1" value="4"> Сыныптағы оқушылардың парталарын орналастыру</label>
+          <div class="explain">Дұрыс жауап: C. Практика күнделігі студенттің күнделікті әрекеті мен өзіндік қорытындысын көрсетеді.</div>
+        </div>
+
+        <div class="question" data-answer="0,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>2. Практикант портфолиосына кіретін материалдарды таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p3q2" value="0"> Сабақ жоспарлары</label>
+          <label class="option"><input type="checkbox" name="p3q2" value="1"> Мектеп асханасының мәзірі</label>
+          <label class="option"><input type="checkbox" name="p3q2" value="2"> Кабинет терезесінің өлшемі</label>
+          <label class="option"><input type="checkbox" name="p3q2" value="3"> Сабақ талдау парақтары</label>
+          <label class="option"><input type="checkbox" name="p3q2" value="4"> Сабақ қоңырауының уақыты</label>
+          <label class="option"><input type="checkbox" name="p3q2" value="5"> Рефлексия және есеп материалдары</label>
+          <div class="explain">Дұрыс жауаптар: A, D, F. Портфолиоға сабақ жоспарлары, талдау материалдары және рефлексия кіреді.</div>
+        </div>
+
+        <div class="question" data-answer="1">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>3. Химия сабағы жоспарына ерекше енгізілетін мәселе:</p>
+          <label class="option"><input type="radio" name="p3q3" value="0"> Оқушылардың парталарының орналасу түсі</label>
+          <label class="option"><input type="radio" name="p3q3" value="1"> Тәжірибе, реактивтер, құралдар және қауіпсіздік</label>
+          <label class="option"><input type="radio" name="p3q3" value="2"> Сынып журналының сыртқы формасы</label>
+          <label class="option"><input type="radio" name="p3q3" value="3"> Сабақ кестесінің баспа нұсқасы</label>
+          <label class="option"><input type="radio" name="p3q3" value="4"> Оқулық мұқабасының атауы</label>
+          <div class="explain">Дұрыс жауап: B. Химия сабағында тәжірибе мен қауіпсіздік міндетті түрде жоспарланады.</div>
+        </div>
+
+        <div class="question" data-answer="1,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>4. Практика соңындағы есеп беруде көрсетілетін мазмұнды таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p3q4" value="0"> Сынып жиһазының бағасы</label>
+          <label class="option"><input type="checkbox" name="p3q4" value="1"> Өткізілген сабақтар мен іс-шаралар</label>
+          <label class="option"><input type="checkbox" name="p3q4" value="2"> Жетістіктер мен қиындықтар</label>
+          <label class="option"><input type="checkbox" name="p3q4" value="3"> Кабинет есігінің нөмірі</label>
+          <label class="option"><input type="checkbox" name="p3q4" value="4"> Кәсіби даму бойынша қорытынды</label>
+          <label class="option"><input type="checkbox" name="p3q4" value="5"> Оқулық беттерінің саны</label>
+          <div class="explain">Дұрыс жауаптар: B, C, E. Есеп беруде атқарылған жұмыс, қиындықтар, жетістіктер және кәсіби қорытынды жазылады.</div>
+        </div>
+
+        <button class="check-btn" onclick="checkBlock('block3')">Тестті тексеру</button>
+      </div>
+    </section>
+        <section id="block4" class="study-block">
+      <div class="study-block-header">
+        <div class="block-number">4</div>
+        <div>
+          <h2>Бағалаудың өлшемдік технологиялары</h2>
+          <p>
+            Өлшемдік бағалау, критерий, оқу нәтижесі, бағалау құралы,
+            қалыптастырушы бағалау, жиынтық бағалау және оқушы жетістігін
+            нақты көрсеткіштер арқылы анықтау.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-tabs">
+        <button class="active" onclick="openTab(event, 'block4', 'theory')">Теория</button>
+        <button onclick="openTab(event, 'block4', 'formula')">Тірек</button>
+        <button onclick="openTab(event, 'block4', 'terms')">Термин</button>
+        <button onclick="openTab(event, 'block4', 'test')">Тест</button>
+      </div>
+
+      <div class="tab-content active" data-tab="theory">
+        <details open>
+          <summary>Өлшемдік бағалаудың мәні</summary>
+          <p>
+            Өлшемдік бағалау оқушының оқу жетістігін алдын ала белгіленген нақты
+            өлшемдер мен критерийлер арқылы анықтауға негізделеді. Мұндай бағалау
+            оқушыға нені меңгеру керегін, тапсырманы қалай орындау керегін және
+            нәтижесін қалай жақсартуға болатынын түсінуге мүмкіндік береді.
+          </p>
+          <div class="source-small">
+            Дереккөз: Өнербаева З.О. “Бағалаудың өлшемдік технологиялары”, 2015.
+          </div>
+        </details>
+
+        <details>
+          <summary>Критерий және оқу нәтижесі</summary>
+          <p>
+            Критерий — оқушының оқу мақсатына жеткенін анықтайтын белгі. Ол оқу
+            нәтижесімен тығыз байланысты. Егер оқу мақсаты химиялық реакция теңдеуін
+            құрастыруды талап етсе, критерий оқушының формулаларды дұрыс жазуы,
+            теңдеуді теңестіруі және реакция мәнін түсіндіруі арқылы көрінеді.
+          </p>
+        </details>
+
+        <details>
+          <summary>Қалыптастырушы бағалау</summary>
+          <p>
+            Қалыптастырушы бағалау оқу барысында жүргізіледі. Оның негізгі қызметі —
+            оқушының қазіргі деңгейін анықтау, қателерін көру, оқуына қолдау көрсету
+            және келесі қадамға бағыттайтын кері байланыс беру.
+          </p>
+        </details>
+
+        <details>
+          <summary>Жиынтық бағалау</summary>
+          <p>
+            Жиынтық бағалау бөлім немесе оқу кезеңі соңында жүргізіледі. Ол белгілі
+            оқу мақсаттары бойынша оқушының жетістігін қорытындылауға бағытталады.
+            Жиынтық бағалау нәтижесі оқу жетістігінің белгілі деңгейін көрсетеді.
+          </p>
+        </details>
+
+        <details>
+          <summary>Химия сабағындағы бағалау</summary>
+          <p>
+            Химия сабағында бағалау теориялық жауаппен ғана шектелмейді. Оқушының
+            реакция теңдеуін жазуы, есеп шығаруы, тәжірибе қауіпсіздігін сақтауы,
+            бақылау нәтижесін түсіндіруі, химиялық тілді қолдануы және қорытынды
+            жасауы бағаланады.
+          </p>
+        </details>
+
+        <details>
+          <summary>КТ үшін маңызды тұжырым</summary>
+          <p>
+            Өлшемдік бағалау — оқушыны белгісіз немесе жалпы әсер бойынша емес,
+            нақты критерийлер мен дескрипторлар арқылы бағалау. Критерий оқу
+            мақсатына, ал дескриптор тапсырманы орындау қадамдарына сәйкес болады.
+          </p>
+        </details>
+      </div>
+
+      <div class="tab-content" data-tab="formula">
+        <div class="formula-list">
+          <div class="formula">Өлшемдік бағалау → нақты критерий арқылы бағалау</div>
+          <div class="formula">Критерий → оқу мақсатына жету белгісі</div>
+          <div class="formula">Дескриптор → тапсырманы орындау қадамы</div>
+          <div class="formula">Қалыптастырушы бағалау → оқу барысында қолдау</div>
+          <div class="formula">Жиынтық бағалау → бөлім/кезең соңындағы нәтиже</div>
+          <div class="formula">Кері байланыс → жетістік + қате + келесі қадам</div>
+          <div class="formula">Химияда бағалау → теңдеу + есеп + тәжірибе + түсіндіру</div>
+          <div class="formula">Бағалау құралы → тапсырма + критерий + дескриптор</div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="terms">
+        <div class="term-list">
+          <div class="term"><b>Өлшемдік бағалау</b><p>Оқушы жетістігін нақты белгіленген өлшемдер мен критерийлер арқылы бағалау.</p></div>
+          <div class="term"><b>Критерий</b><p>Оқу мақсатына жетуді анықтайтын негізгі белгі.</p></div>
+          <div class="term"><b>Оқу нәтижесі</b><p>Оқушының сабақ немесе бөлім соңында меңгеруі тиіс білім, білік және дағдысы.</p></div>
+          <div class="term"><b>Қалыптастырушы бағалау</b><p>Оқу барысында оқушыны қолдау және ілгерілеуін анықтау үшін жүргізілетін бағалау.</p></div>
+          <div class="term"><b>Жиынтық бағалау</b><p>Оқу кезеңі соңында оқушы жетістігін қорытындылайтын бағалау.</p></div>
+          <div class="term"><b>Бағалау құралы</b><p>Оқушы жетістігін анықтауға арналған тапсырма, критерий және дескриптор жүйесі.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="test">
+        <div id="block4Result" class="result"></div>
+
+        <div class="question" data-answer="2">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>1. Өлшемдік бағалаудың негізгі ерекшелігі:</p>
+          <label class="option"><input type="radio" name="p4q1" value="0"> Оқушы жауабын мұғалімнің жалпы әсері бойынша бағалау</label>
+          <label class="option"><input type="radio" name="p4q1" value="1"> Бағаны сабақ соңында түсіндірмесіз қою</label>
+          <label class="option"><input type="radio" name="p4q1" value="2"> Оқушы жетістігін алдын ала белгіленген критерийлер арқылы анықтау</label>
+          <label class="option"><input type="radio" name="p4q1" value="3"> Барлық оқушыға бірдей балл қою</label>
+          <label class="option"><input type="radio" name="p4q1" value="4"> Тапсырманы тек ауызша жауап арқылы тексеру</label>
+          <div class="explain">Дұрыс жауап: C. Өлшемдік бағалау нақты критерийлер арқылы оқушы жетістігін анықтауға негізделеді.</div>
+        </div>
+
+        <div class="question" data-answer="0,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>2. Химия сабағында бағалауға болатын әрекеттерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p4q2" value="0"> Реакция теңдеуін дұрыс құрастыру</label>
+          <label class="option"><input type="checkbox" name="p4q2" value="1"> Оқулық мұқабасын сипаттау</label>
+          <label class="option"><input type="checkbox" name="p4q2" value="2"> Кабинет есігінің орналасуын айту</label>
+          <label class="option"><input type="checkbox" name="p4q2" value="3"> Тәжірибе қауіпсіздігін сақтау</label>
+          <label class="option"><input type="checkbox" name="p4q2" value="4"> Сабақ кестесін көшіру</label>
+          <label class="option"><input type="checkbox" name="p4q2" value="5"> Бақылау нәтижесін химиялық тұрғыдан түсіндіру</label>
+          <div class="explain">Дұрыс жауаптар: A, D, F. Химияда теңдеу, қауіпсіздік және тәжірибе нәтижесін түсіндіру бағалауға жатады.</div>
+        </div>
+
+        <div class="question" data-answer="1">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>3. Қалыптастырушы бағалаудың негізгі қызметі:</p>
+          <label class="option"><input type="radio" name="p4q3" value="0"> Тоқсан соңында қорытынды бағаны шығару</label>
+          <label class="option"><input type="radio" name="p4q3" value="1"> Оқу барысында оқушыны қолдау және келесі қадамға бағыттау</label>
+          <label class="option"><input type="radio" name="p4q3" value="2"> Оқулықтағы барлық тапсырманы көшірту</label>
+          <label class="option"><input type="radio" name="p4q3" value="3"> Сынып журналын әкімшілік тексеруге дайындау</label>
+          <label class="option"><input type="radio" name="p4q3" value="4"> Сабақ соңында оқушыны салыстыру</label>
+          <div class="explain">Дұрыс жауап: B. Қалыптастырушы бағалау оқу барысында кері байланыс беріп, оқушыны дамытуға бағытталады.</div>
+        </div>
+
+        <div class="question" data-answer="1,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>4. Бағалау құралына кіретін құрамдас бөліктерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p4q4" value="0"> Сабақ кестесі</label>
+          <label class="option"><input type="checkbox" name="p4q4" value="1"> Тапсырма</label>
+          <label class="option"><input type="checkbox" name="p4q4" value="2"> Бағалау критерийі</label>
+          <label class="option"><input type="checkbox" name="p4q4" value="3"> Кабинет паспорты</label>
+          <label class="option"><input type="checkbox" name="p4q4" value="4"> Дескриптор</label>
+          <label class="option"><input type="checkbox" name="p4q4" value="5"> Оқулық мұқабасы</label>
+          <div class="explain">Дұрыс жауаптар: B, C, E. Бағалау құралы тапсырма, критерий және дескриптор арқылы құрылады.</div>
+        </div>
+
+        <button class="check-btn" onclick="checkBlock('block4')">Тестті тексеру</button>
+      </div>
+    </section>
+
+    <section id="block5" class="study-block">
+      <div class="study-block-header">
+        <div class="block-number">5</div>
+        <div>
+          <h2>Дескриптор, рубрика және кері байланыс</h2>
+          <p>
+            Дескриптор құрастыру, рубрика арқылы деңгейлеу, оқушы жұмысын талдау,
+            өзін-өзі бағалау, өзара бағалау және тиімді кері байланыс беру.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-tabs">
+        <button class="active" onclick="openTab(event, 'block5', 'theory')">Теория</button>
+        <button onclick="openTab(event, 'block5', 'formula')">Тірек</button>
+        <button onclick="openTab(event, 'block5', 'terms')">Термин</button>
+        <button onclick="openTab(event, 'block5', 'test')">Тест</button>
+      </div>
+
+      <div class="tab-content active" data-tab="theory">
+        <details open>
+          <summary>Дескриптордың мәні</summary>
+          <p>
+            Дескриптор тапсырманы орындаудың нақты қадамдарын көрсетеді. Ол оқушыға
+            не істеу керегін түсіндіреді, ал мұғалімге оқушы жұмысын әділ бағалауға
+            мүмкіндік береді. Дескриптор анық, қысқа және тапсырма мазмұнымен
+            тікелей байланысты болуы керек.
+          </p>
+          <div class="source-small">
+            Дереккөз: Өнербаева З.О. “Бағалаудың өлшемдік технологиялары”, 2015.
+          </div>
+        </details>
+
+        <details>
+          <summary>Рубрика</summary>
+          <p>
+            Рубрика оқушы жұмысының сапасын деңгейлер бойынша сипаттайды. Ол
+            “жоғары”, “орта”, “төмен” немесе балдық деңгейлер арқылы оқушының
+            нәтижесін нақты көрсетуге көмектеседі. Рубрика күрделі тапсырмаларды,
+            жобаларды, зертханалық жұмыстарды бағалауда тиімді.
+          </p>
+        </details>
+
+        <details>
+          <summary>Кері байланыс</summary>
+          <p>
+            Кері байланыс оқушыға жұмысының күшті жағын, қателігін және келесі
+            қадамда нені жақсарту керегін көрсетеді. Тиімді кері байланыс нақты,
+            түсінікті, қолдаушы және оқу мақсатына бағытталған болады.
+          </p>
+        </details>
+
+        <details>
+          <summary>Өзін-өзі бағалау және өзара бағалау</summary>
+          <p>
+            Өзін-өзі бағалау оқушының өз жұмысын критерий бойынша талдауына
+            мүмкіндік береді. Өзара бағалау кезінде оқушылар бір-бірінің жұмысын
+            критерийге сүйеніп қарап, ұсыныс береді. Бұл оқу жауапкершілігін арттырады.
+          </p>
+        </details>
+
+        <details>
+          <summary>Химиядағы дескриптор мысалы</summary>
+          <p>
+            Егер тапсырма “қышқыл мен негіздің бейтараптану реакциясын түсіндіру”
+            болса, дескрипторлар: қышқыл мен негізді анықтайды; реакция теңдеуін
+            жазады; түзілген тұз бен суды көрсетеді; реакция мәнін түсіндіреді.
+          </p>
+        </details>
+
+        <details>
+          <summary>КТ үшін маңызды тұжырым</summary>
+          <p>
+            Критерий оқушы неге жетуі керегін көрсетеді, дескриптор сол нәтижеге
+            жету қадамдарын сипаттайды, рубрика сапа деңгейін анықтайды, ал кері
+            байланыс келесі оқу қадамын көрсетеді.
+          </p>
+        </details>
+      </div>
+
+      <div class="tab-content" data-tab="formula">
+        <div class="formula-list">
+          <div class="formula">Критерий → не бағаланады?</div>
+          <div class="formula">Дескриптор → қалай орындалады?</div>
+          <div class="formula">Рубрика → сапа деңгейі</div>
+          <div class="formula">Кері байланыс → жетістік + түзету + келесі қадам</div>
+          <div class="formula">Өзін-өзі бағалау → өз жұмысын критериймен салыстыру</div>
+          <div class="formula">Өзара бағалау → сыныптасының жұмысын критериймен қарау</div>
+          <div class="formula">Тиімді дескриптор → нақты + қысқа + тапсырмаға сай</div>
+          <div class="formula">Химияда рубрика → тәжірибе + есеп + түсіндіру сапасы</div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="terms">
+        <div class="term-list">
+          <div class="term"><b>Дескриптор</b><p>Тапсырманы орындаудың нақты қадамдарын сипаттайтын бағалау элементі.</p></div>
+          <div class="term"><b>Рубрика</b><p>Оқушы жұмысының сапасын деңгейлер бойынша сипаттайтын бағалау құралы.</p></div>
+          <div class="term"><b>Кері байланыс</b><p>Оқушыға жетістігі, қатесі және келесі қадамы туралы берілетін ақпарат.</p></div>
+          <div class="term"><b>Өзін-өзі бағалау</b><p>Оқушының өз жұмысын критерий мен дескрипторға сүйеніп бағалауы.</p></div>
+          <div class="term"><b>Өзара бағалау</b><p>Оқушылардың бір-бірінің жұмысын бағалау критерийі арқылы талдауы.</p></div>
+          <div class="term"><b>Бағалау деңгейі</b><p>Оқушы жұмысының сапасын көрсететін нәтиже деңгейі.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="test">
+        <div id="block5Result" class="result"></div>
+
+        <div class="question" data-answer="2">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>1. Дескриптордың негізгі қызметі:</p>
+          <label class="option"><input type="radio" name="p5q1" value="0"> Сабақ тақырыбын оқу бағдарламасына енгізу</label>
+          <label class="option"><input type="radio" name="p5q1" value="1"> Оқушының жалпы тәртібін сипаттау</label>
+          <label class="option"><input type="radio" name="p5q1" value="2"> Тапсырманы орындаудың нақты қадамдарын көрсету</label>
+          <label class="option"><input type="radio" name="p5q1" value="3"> Журналдағы бағаны автоматты қою</label>
+          <label class="option"><input type="radio" name="p5q1" value="4"> Оқулықтағы параграфты қысқарту</label>
+          <div class="explain">Дұрыс жауап: C. Дескриптор оқушы тапсырманы қалай орындауы керегін нақты көрсетеді.</div>
+        </div>
+
+        <div class="question" data-answer="0,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>2. Тиімді кері байланысқа тән белгілерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p5q2" value="0"> Нақты және түсінікті болуы</label>
+          <label class="option"><input type="checkbox" name="p5q2" value="1"> Оқушыны басқа оқушымен салыстыруы</label>
+          <label class="option"><input type="checkbox" name="p5q2" value="2"> Тек бағаны хабарлауы</label>
+          <label class="option"><input type="checkbox" name="p5q2" value="3"> Жетістік пен жақсартатын тұсты көрсетуі</label>
+          <label class="option"><input type="checkbox" name="p5q2" value="4"> Оқу мақсатына байланыссыз болуы</label>
+          <label class="option"><input type="checkbox" name="p5q2" value="5"> Келесі қадамға бағыттауы</label>
+          <div class="explain">Дұрыс жауаптар: A, D, F. Тиімді кері байланыс нақты, қолдаушы және келесі қадамды көрсететін болуы керек.</div>
+        </div>
+
+        <div class="question" data-answer="1">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>3. Рубрика қай жағдайда әсіресе тиімді қолданылады?</p>
+          <label class="option"><input type="radio" name="p5q3" value="0"> Сабақ тақырыбын дәптерге жазуда</label>
+          <label class="option"><input type="radio" name="p5q3" value="1"> Күрделі тапсырма, жоба немесе зертханалық жұмысты деңгеймен бағалауда</label>
+          <label class="option"><input type="radio" name="p5q3" value="2"> Қатысу журналын толтыруда</label>
+          <label class="option"><input type="radio" name="p5q3" value="3"> Оқулық беттерін санауда</label>
+          <label class="option"><input type="radio" name="p5q3" value="4"> Кабинет есігін белгілеуде</label>
+          <div class="explain">Дұрыс жауап: B. Рубрика күрделі жұмыстардың сапасын деңгейлер арқылы сипаттап бағалауға қолайлы.</div>
+        </div>
+
+        <div class="question" data-answer="1,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>4. “Бейтараптану реакциясын түсіндіру” тапсырмасына сай дескрипторларды таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p5q4" value="0"> Сабақ кестесін дұрыс жазады</label>
+          <label class="option"><input type="checkbox" name="p5q4" value="1"> Қышқыл мен негізді анықтайды</label>
+          <label class="option"><input type="checkbox" name="p5q4" value="2"> Реакция теңдеуін жазады</label>
+          <label class="option"><input type="checkbox" name="p5q4" value="3"> Оқулық мұқабасын сипаттайды</label>
+          <label class="option"><input type="checkbox" name="p5q4" value="4"> Түзілген тұз бен суды көрсетеді</label>
+          <label class="option"><input type="checkbox" name="p5q4" value="5"> Журналдағы бағаны көшіреді</label>
+          <div class="explain">Дұрыс жауаптар: B, C, E. Бұл тапсырмада оқушы қышқыл-негізді анықтап, теңдеу жазып, өнімдерді көрсетуі керек.</div>
+        </div>
+
+        <button class="check-btn" onclick="checkBlock('block5')">Тестті тексеру</button>
+      </div>
+    </section>
+        <section id="block6" class="study-block">
+      <div class="study-block-header">
+        <div class="block-number">6</div>
+        <div>
+          <h2>Жинақ тест</h2>
+          <p>
+            Педагогикалық практика, сабақ бақылау, практика құжаттары, өлшемдік
+            бағалау, дескриптор, рубрика және кері байланыс бойынша қорытынды тексеру.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-tabs">
+        <button class="active" onclick="openTab(event, 'block6', 'theory')">Нұсқаулық</button>
+        <button onclick="openTab(event, 'block6', 'formula')">Қайталау</button>
+        <button onclick="openTab(event, 'block6', 'terms')">Термин</button>
+        <button onclick="openTab(event, 'block6', 'test')">Тест</button>
+      </div>
+
+      <div class="tab-content active" data-tab="theory">
+        <details open>
+          <summary>Қорытынды бөлім</summary>
+          <p>
+            Бұл бөлім Өнербаева З.О. еңбектері бойынша педагогикалық практика мен
+            бағалаудың өлшемдік технологияларын қайталауға арналған.
+          </p>
+          <div class="source-small">
+            Дереккөздер: Өнербаева З.О. “Педагогикалық практика әдістемесі”, 2010;
+            “Бағалаудың өлшемдік технологиялары”, 2015.
+          </div>
+        </details>
+      </div>
+
+      <div class="tab-content" data-tab="formula">
+        <div class="formula-list">
+          <div class="formula">Педагогикалық практика → теория + мектеп тәжірибесі</div>
+          <div class="formula">Практика міндеті → бақылау + жоспарлау + сабақ өткізу + талдау</div>
+          <div class="formula">Сабақ талдау → мақсат + әдіс + оқушы әрекеті + нәтиже</div>
+          <div class="formula">Практика құжаты → күнделік + жоспар + талдау + есеп</div>
+          <div class="formula">Портфолио → кәсіби жетістік дәлелі</div>
+          <div class="formula">Өлшемдік бағалау → нақты критерий арқылы бағалау</div>
+          <div class="formula">Дескриптор → тапсырманы орындау қадамы</div>
+          <div class="formula">Рубрика → сапа деңгейін сипаттау</div>
+          <div class="formula">Кері байланыс → жетістік + түзету + келесі қадам</div>
+          <div class="formula">Рефлексия → өз әрекетін талдау және жақсарту</div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="terms">
+        <div class="term-list">
+          <div class="term"><b>Педагогикалық практика</b><p>Болашақ мұғалімнің кәсіби әрекетті мектеп жағдайында меңгеруі.</p></div>
+          <div class="term"><b>Сабақ талдау</b><p>Сабақ мақсаты, мазмұны, әдісі, бағалауы және нәтижесін қарастыру.</p></div>
+          <div class="term"><b>Портфолио</b><p>Практиканттың кәсіби жұмыстары мен жетістіктерін жинақтайтын материал.</p></div>
+          <div class="term"><b>Өлшемдік бағалау</b><p>Оқушы жетістігін критерийлер арқылы анықтау.</p></div>
+          <div class="term"><b>Дескриптор</b><p>Тапсырманы орындау қадамдарын көрсететін бағалау элементі.</p></div>
+          <div class="term"><b>Рубрика</b><p>Жұмыс сапасын деңгейлер бойынша сипаттайтын бағалау құралы.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-content" data-tab="test">
+        <div id="block6Result" class="result"></div>
+
+        <div class="question" data-answer="2">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>1. Педагогикалық практиканың басты мақсаты:</p>
+          <label class="option"><input type="radio" name="p6q1" value="0"> Оқулықтағы тақырыптарды механикалық қайталау</label>
+          <label class="option"><input type="radio" name="p6q1" value="1"> Кабинет құжаттарын сыртқы үлгі бойынша рәсімдеу</label>
+          <label class="option"><input type="radio" name="p6q1" value="2"> Болашақ мұғалімнің кәсіби құзыреттілігін қалыптастыру</label>
+          <label class="option"><input type="radio" name="p6q1" value="3"> Сабақ кестесін әкімшілік тәртіппен бекіту</label>
+          <label class="option"><input type="radio" name="p6q1" value="4"> Оқушылардың парталарын дұрыс орналастыру</label>
+          <div class="explain">Дұрыс жауап: C. Педагогикалық практика болашақ мұғалімнің кәсіби құзыреттілігін қалыптастыруға бағытталады.</div>
+        </div>
+
+        <div class="question" data-answer="0,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>2. Педагогикалық практикада орындалатын негізгі әрекеттерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p6q2" value="0"> Сабақ бақылау</label>
+          <label class="option"><input type="checkbox" name="p6q2" value="1"> Оқулық мұқабасын безендіру</label>
+          <label class="option"><input type="checkbox" name="p6q2" value="2"> Кабинет есігін нөмірлеу</label>
+          <label class="option"><input type="checkbox" name="p6q2" value="3"> Сабақ жоспарын құру</label>
+          <label class="option"><input type="checkbox" name="p6q2" value="4"> Сабақ қоңырауын тексеру</label>
+          <label class="option"><input type="checkbox" name="p6q2" value="5"> Өзіндік талдау жасау</label>
+          <div class="explain">Дұрыс жауаптар: A, D, F. Практикада сабақ бақыланады, жоспар құрылады және рефлексия жасалады.</div>
+        </div>
+
+        <div class="question" data-answer="1">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>3. Сабақ талдауда бірінші кезекте не анықталады?</p>
+          <label class="option"><input type="radio" name="p6q3" value="0"> Сабақта қолданылған қалам түсі</label>
+          <label class="option"><input type="radio" name="p6q3" value="1"> Сабақ мақсатына жету деңгейі және оқушы нәтижесі</label>
+          <label class="option"><input type="radio" name="p6q3" value="2"> Сыныптағы парталардың саны</label>
+          <label class="option"><input type="radio" name="p6q3" value="3"> Журналдың сыртқы көрінісі</label>
+          <label class="option"><input type="radio" name="p6q3" value="4"> Оқулық бетінің қалыңдығы</label>
+          <div class="explain">Дұрыс жауап: B. Сабақ талдауда негізгі назар мақсатқа жету мен оқушы нәтижесіне аударылады.</div>
+        </div>
+
+        <div class="question" data-answer="1,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>4. Практика құжаттарына кіретіндерді таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p6q4" value="0"> Асхана мәзірі</label>
+          <label class="option"><input type="checkbox" name="p6q4" value="1"> Практика күнделігі</label>
+          <label class="option"><input type="checkbox" name="p6q4" value="2"> Сабақ жоспары</label>
+          <label class="option"><input type="checkbox" name="p6q4" value="3"> Кабинет есігінің өлшемі</label>
+          <label class="option"><input type="checkbox" name="p6q4" value="4"> Сабақ талдау парағы</label>
+          <label class="option"><input type="checkbox" name="p6q4" value="5"> Сынып терезесінің саны</label>
+          <div class="explain">Дұрыс жауаптар: B, C, E. Практика күнделігі, сабақ жоспары және сабақ талдау парағы практика құжаттарына жатады.</div>
+        </div>
+
+        <div class="question" data-answer="4">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>5. Өлшемдік бағалауға сәйкес тұжырым:</p>
+          <label class="option"><input type="radio" name="p6q5" value="0"> Оқушы жетістігі жалпы әсер арқылы бағаланады</label>
+          <label class="option"><input type="radio" name="p6q5" value="1"> Бағалау тапсырмасыз және критерийсіз жүргізіледі</label>
+          <label class="option"><input type="radio" name="p6q5" value="2"> Нәтиже оқушыларды бір-бірімен салыстыру арқылы анықталады</label>
+          <label class="option"><input type="radio" name="p6q5" value="3"> Бағалау тек тоқсан соңында ғана қолданылады</label>
+          <label class="option"><input type="radio" name="p6q5" value="4"> Оқушы жетістігі алдын ала белгіленген критерийлер арқылы анықталады</label>
+          <div class="explain">Дұрыс жауап: E. Өлшемдік бағалау нақты критерийлерге сүйенеді.</div>
+        </div>
+
+        <div class="question" data-answer="0,2,4">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>6. Бағалау құралының маңызды бөліктерін таңдаңыз:</p>
+          <label class="option"><input type="checkbox" name="p6q6" value="0"> Тапсырма</label>
+          <label class="option"><input type="checkbox" name="p6q6" value="1"> Сабақ кестесі</label>
+          <label class="option"><input type="checkbox" name="p6q6" value="2"> Бағалау критерийі</label>
+          <label class="option"><input type="checkbox" name="p6q6" value="3"> Кабинет паспорты</label>
+          <label class="option"><input type="checkbox" name="p6q6" value="4"> Дескриптор</label>
+          <label class="option"><input type="checkbox" name="p6q6" value="5"> Оқулық мұқабасы</label>
+          <div class="explain">Дұрыс жауаптар: A, C, E. Бағалау құралы тапсырма, критерий және дескриптор арқылы жасалады.</div>
+        </div>
+
+        <div class="question" data-answer="3">
+          <span class="question-note">Бір дұрыс жауап</span>
+          <p>7. Рубриканың негізгі қызметі:</p>
+          <label class="option"><input type="radio" name="p6q7" value="0"> Сабақ тақырыбын журналға көшіру</label>
+          <label class="option"><input type="radio" name="p6q7" value="1"> Реактивтерді қоймада орналастыру</label>
+          <label class="option"><input type="radio" name="p6q7" value="2"> Оқулықтағы мәтінді қысқарту</label>
+          <label class="option"><input type="radio" name="p6q7" value="3"> Оқушы жұмысының сапасын деңгейлер бойынша сипаттау</label>
+          <label class="option"><input type="radio" name="p6q7" value="4"> Сабақ кестесін әкімшілік бекіту</label>
+          <div class="explain">Дұрыс жауап: D. Рубрика жұмыс сапасын деңгейлер арқылы сипаттайды.</div>
+        </div>
+
+        <div class="question" data-answer="1,3,5">
+          <span class="question-note">Бірнеше дұрыс жауап</span>
+          <p>8. Тиімді кері байланыс қандай болуы керек?</p>
+          <label class="option"><input type="checkbox" name="p6q8" value="0"> Түсіндірмесіз баға қоюға негізделген</label>
+          <label class="option"><input type="checkbox" name="p6q8" value="1"> Нақты және түсінікті</label>
+          <label class="option"><input type="checkbox" name="p6q8" value="2"> Оқу мақсатынан бөлек</label>
+          <label class="option"><input type="checkbox" name="p6q8" value="3"> Жетістік пен жақсарту бағытын көрсететін</label>
+          <label class="option"><input type="checkbox" name="p6q8" value="4"> Оқушыны басқа оқушымен салыстыратын</label>
+          <label class="option"><input type="checkbox" name="p6q8" value="5"> Келесі қадамға бағыттайтын</label>
+          <div class="explain">Дұрыс жауаптар: B, D, F. Кері байланыс нақты, қолдаушы және келесі қадамды көрсететін болуы керек.</div>
+        </div>
+
+        <button class="check-btn" onclick="checkBlock('block6')">Тестті тексеру</button>
+      </div>
+    </section>
+
+    <div class="copyright-note">
+      © Назерке. Барлық құқық қорғалған. Материалды рұқсатсыз көшіруге,
+      сатуға, қайта таратуға немесе коммерциялық мақсатта қолдануға болмайды.
+    </div>
+
+    <footer>
+      Педагогикалық практика және бағалаудың өлшемдік технологиялары · КТ-ға дайындық
+    </footer>
+
+  </div>
+
+  <script>
+    function openTab(event, blockId, tabName) {
+      const block = document.getElementById(blockId);
+      if (!block) return;
+
+      const contents = block.querySelectorAll(".tab-content");
+      const buttons = block.querySelectorAll(".mini-tabs button");
+
+      contents.forEach(content => content.classList.remove("active"));
+      buttons.forEach(button => button.classList.remove("active"));
+
+      const selected = block.querySelector('.tab-content[data-tab="' + tabName + '"]');
+      if (selected) selected.classList.add("active");
+
+      event.currentTarget.classList.add("active");
+    }
+
+    function arraysEqual(a, b) {
+      if (a.length !== b.length) return false;
+      const sortedA = [...a].sort();
+      const sortedB = [...b].sort();
+
+      for (let i = 0; i < sortedA.length; i++) {
+        if (sortedA[i] !== sortedB[i]) return false;
+      }
+
+      return true;
+    }
+
+    function checkBlock(blockId) {
+      const block = document.getElementById(blockId);
+      if (!block) return;
+
+      const questions = block.querySelectorAll(".question");
+      const result = block.querySelector(".result");
+
+      let correctCount = 0;
+      let answeredCount = 0;
+
+      questions.forEach(question => {
+        const correctAnswers = question.getAttribute("data-answer").split(",").map(item => item.trim());
+        const options = question.querySelectorAll(".option");
+        const explanation = question.querySelector(".explain");
+        const checkedInputs = question.querySelectorAll("input:checked");
+        const selectedAnswers = Array.from(checkedInputs).map(input => input.value);
+
+        options.forEach(option => option.classList.remove("correct", "wrong"));
+
+        if (explanation) explanation.classList.add("show");
+
+        options.forEach(option => {
+          const input = option.querySelector("input");
+          if (!input) return;
+
+          if (correctAnswers.includes(input.value)) {
+            option.classList.add("correct");
+          }
+
+          if (input.checked && !correctAnswers.includes(input.value)) {
+            option.classList.add("wrong");
+          }
+        });
+
+        if (selectedAnswers.length > 0) {
+          answeredCount++;
+
+          if (arraysEqual(selectedAnswers, correctAnswers)) {
+            correctCount++;
+          }
+        }
+      });
+
+      const total = questions.length;
+      const percent = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+      let message = "";
+      if (percent >= 90) {
+        message = "Өте жақсы нәтиже. Педагогикалық практика және өлшемдік бағалау жақсы меңгерілген.";
+      } else if (percent >= 70) {
+        message = "Жақсы нәтиже. Қате кеткен сұрақтардың түсіндірмесін қайта қарап шық.";
+      } else if (percent >= 50) {
+        message = "Орташа нәтиже. Теория, тірек және термин бөлімдерін қайталау керек.";
+      } else {
+        message = "Бұл бөлімді қайта оқу қажет. Алдымен теорияны оқып, кейін тестті қайта орында.";
+      }
+
+      result.innerHTML =
+        '<div class="score">' + correctCount + ' / ' + total + '</div>' +
+        '<div>Жауап берілген сұрақтар: ' + answeredCount + ' / ' + total + '</div>' +
+        '<div>Нәтиже: ' + percent + '%</div>' +
+        '<p style="margin-top:8px;">' + message + '</p>';
+
+      result.classList.add("show");
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    }
+  </script>
+</body>
+</html>
